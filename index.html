@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  body {
-    font-family: sans-serif;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-  .progress-container {
-    width: 100%;
-    height: 20px;
-    background-color: #f3f3f3;
-    border-radius: 10px;
-    overflow: hidden;
-  }
+    .clock {
+      font-size: 48px;
+      font-weight: bold;
+    }
 
-  .progress-bar {
-    height: 100%;
-    width: 60%; /* Update this value to change progress percentage */
-    background-color: #333; /* Dark grey color */
-    border-radius: 10px;
-  }
-
-  .progress-percentage {
-    position: relative;
-    top: -18px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    color: #999; /* Light grey color */
-  }
-</style>
+    .clock span {
+      display: inline-block;
+      width: 2ch;
+      height: 1em;
+      background: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      margin-right: 4px;
+    }
+  </style>
 </head>
 <body>
-  <div class="progress-container">
-    <div class="progress-bar"></div>
-    <div class="progress-percentage">60%</div> <!-- Update this value to match the progress-bar width -->
+  <div class="clock">
+    <span id="hours"></span>
+    <span>:</span>
+    <span id="minutes"></span>
   </div>
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+
+      document.getElementById('hours').innerText = hours;
+      document.getElementById('minutes').innerText = minutes;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
 </body>
 </html>
