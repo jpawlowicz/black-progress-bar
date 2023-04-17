@@ -8,24 +8,18 @@
     body {
       font-family: 'Bebas Neue', sans-serif;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       background-color: #333;
     }
 
-    .date {
-      font-size: 48px;
-      font-weight: bold;
-      color: #fff;
-      margin-bottom: 10px;
-    }
-
     .clock {
       font-size: 120px;
       font-weight: bold;
       color: #fff;
+      display: flex;
+      align-items: center;
     }
 
     .clock span {
@@ -33,9 +27,16 @@
       width: 1ch;
       height: 1em;
       text-align: center;
-      margin-right: 4px;
+      margin: 0 2px;
       overflow: hidden;
       position: relative;
+      background-color: #333;
+      border-radius: 6px;
+    }
+
+    .clock span.space {
+      width: 0.5ch;
+      background-color: transparent;
     }
 
     .clock span div {
@@ -44,7 +45,6 @@
       flex-direction: column;
       justify-content: center;
       height: 100%;
-      background-color: #333;
       backface-visibility: hidden;
     }
 
@@ -72,22 +72,28 @@
   </style>
 </head>
 <body>
-  <div class="date" id="date"></div>
   <div class="clock">
+    <span><div id="date-1"></div></span>
+    <span><div id="date-2"></div></span>
+    <span><div id="date-3"></div></span>
+    <span class="space"></span>
     <span><div id="hours-1"></div></span>
     <span><div id="hours-2"></div></span>
+    <span class="space"></span>
     <span><div id="minutes-1"></div></span>
     <span><div id="minutes-2"></div></span>
   </div>
   <script>
     function updateClock() {
       const now = new Date();
-      const date = now.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
+      const dateArray = now.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).split(' ');
       const hours = now.getHours().toString().padStart(2, '0');
       const minutes = now.getMinutes().toString().padStart(2, '0');
 
-      document.getElementById('date').innerText = date;
-      document.getElementById('hours-1').innerText = hours.charAt(0);
+      document.getElementById('date-1').innerText = dateArray[0];
+      document.getElementById('date-2').innerText = dateArray[1];
+      document.getElementById('date-3').innerText = dateArray[2];
+     document.getElementById('hours-1').innerText = hours.charAt(0);
       document.getElementById('hours-2').innerText = hours.charAt(1);
       document.getElementById('minutes-1').innerText = minutes.charAt(0);
       document.getElementById('minutes-2').innerText = minutes.charAt(1);
@@ -98,3 +104,4 @@
   </script>
 </body>
 </html>
+
