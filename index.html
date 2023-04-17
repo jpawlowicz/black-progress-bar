@@ -74,8 +74,10 @@
 <body>
   <div class="date" id="date"></div>
   <div class="clock">
-    <span><div id="hours"></div></span>
-    <span><div id="minutes"></div></span>
+    <span><div id="hours-1"></div></span>
+    <span><div id="hours-2"></div></span>
+    <span><div id="minutes-1"></div></span>
+    <span><div id="minutes-2"></div></span>
   </div>
   <script>
     function updateClock() {
@@ -85,8 +87,10 @@
       const minutes = now.getMinutes().toString().padStart(2, '0');
 
       document.getElementById('date').innerText = date;
-      document.getElementById('hours').innerText = hours;
-      document.getElementById('minutes').innerText = minutes;
+      document.getElementById('hours-1').innerText = hours.charAt(0);
+      document.getElementById('hours-2').innerText = hours.charAt(1);
+      document.getElementById('minutes-1').innerText = minutes.charAt(0);
+      document.getElementById('minutes-2').innerText = minutes.charAt(1);
     }
 
     updateClock();
